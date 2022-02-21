@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+  <head>
+    <title></title>
+    <meta content="">
+  <meta charset="utf-8">
+    <script src="eventsource-polyfill.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoi0K7Qu9GW0Y8g0JLQvtC70L7QtNC40LzQuNGA0ZbQstC90LAiLCJlbWFpbCI6IjQ2MzU3OTdwdHNAdWtyLm5ldCJ9LCJpYXQiOjE2NDQ5MzQwMjUsImV4cCI6MTY0NDk3MDAyNX0.JplTozLHxe10_8nG2_SbqycJ92pqObw4kvasqdIeiH0'
+      const events = new EventSourcePolyfill('http://127.0.0.1:7000/api/events', {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+      // const events = new EventSourcePolyfill('http://127.0.0.1:7000/api/events', {AuthorizationHeder: Bearer });
+
+      events.addEventListener('message', (event) => {
+        const parsedData = JSON.parse(event.data);
+
+        console.log(parsedData);
+      });
+      events.addEventListener('disconnect_manager', (event) => {
+        const parsedData = JSON.parse(event.data);
+
+        console.log(parsedData);
+      });
+      events.addEventListener('new_order', (event) => {
+
+        const parsedData = JSON.parse(event.data);
+
+        console.log("New Order Event");
+        console.log(parsedData);
+      });
+
+      events.addEventListener('update_order', (event) => {
+        console.log('update_order');
+        console.log(event);
+      })
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "deployment": "development",
+  "listen" : {
+    "port": "7000"
+  },
+  "mysql": {
+    "host": "localhost",
+    "db_name": "plittorg_db",
+    "user": "root",
+    "password": ""
+  },
+  "redis": ""
+}

@@ -1,0 +1,7 @@
+package-lock.json
+node_modules
+
+.idea
+config/production.json
+
+*.log
